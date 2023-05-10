@@ -22,9 +22,9 @@ class base_model():
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        return dict{
-                "id" = self.id,
-                "created_at" = self.created_at,
-                "updated_at" = self.updated_at,
+        return {
+                "id": self.id,
+                "created_at": self.created_at,
+                "updated_at": self.updated_at,
                 }
 
