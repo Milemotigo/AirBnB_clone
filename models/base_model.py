@@ -7,7 +7,7 @@ from datetime import datetime
 
 class base_model():
     """base model"""
-    def __init__(self, id, created_at, updated_at):
+    def __init__(self, id=0, created_at=0, updated_at=0):
         """constructor function"""
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
