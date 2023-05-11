@@ -5,7 +5,7 @@
 import uuid
 from datetime import datetime
 
-class base_model():
+class BaseModel():
     """base model"""
     def __init__(self, id=0, created_at=0, updated_at=0):
         """constructor function"""
@@ -15,16 +15,22 @@ class base_model():
 
     def __str__(self):
         """  """
-        return f"{[self.__class__.__name__]} {(self.id}) {self.__dict__}"
+        return f"{[self.__class__.__name__]} {(self.id)} {self.__dict__}"
 
     def save(self):
         """  """
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        return {
-                "id": self.id,
-                "created_at": self.created_at,
-                "updated_at": self.updated_at,
-                }
+        """  """
+        dictt = {}
+        for key, val in self.__dict__.items():
+            if key not in ["id", "created_at", "updated_at"]:
+                dictt[key] = val
+        dictt["__class__"] = self.__class__.__name__
+        dictt["updated_at"] = self.updated_at.isoformat()
+        dictt["id"] = self.id
+        dictt["created_at"] = self.created_at.isoformat()
+         
+        return dictt
 
