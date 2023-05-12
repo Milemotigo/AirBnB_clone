@@ -2,8 +2,6 @@
 """
 Module: file_storage.py
 """
-import models
-
 import json
 
 class FileStorage():
@@ -33,11 +31,11 @@ class FileStorage():
         try:
             with open(self.__file_path, 'r') as rfile:
                 json_to_dict = json.load(rfile)
-            for key, object_dict in json_to_dict.items():
-                clas_name, object_id = key.split(".", 1)
-                cls = getattr(models, clas_name)
-                #cls = globals()[clas_name]
-                self.__objects[key] = cls(**object_dict)
+                for key, object_dict in json_to_dict.items():
+                    clas_name, object_id = key.split(".", 1)
+                    """cls = globals()[clas_name]
+                    self.__objects[key] = cls(**object_dict)"""
+                    self.__objects[key] = eval(clas_name)(**object_dict)
 
         except FileNotFoundError:
             pass

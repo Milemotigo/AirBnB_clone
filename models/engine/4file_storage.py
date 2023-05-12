@@ -1,9 +1,6 @@
-#!/usr/bin/python3
 """
 Module: file_storage.py
 """
-import models
-
 import json
 
 class FileStorage():
@@ -13,31 +10,36 @@ class FileStorage():
 
     def all(self):
         """returns the dictionary __objects"""
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         key = obj.__class__.__name__+"."+obj.id
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path)"""
         dict_to_json = {}
-        for key, obj in self.__objects.items():
-            dict_to_json[key] = obj.to_dict()
+        for key, obj in FileStorage.__objects.items():
+            key = f"{obj.__class__.__name__}.{obj.id}"
+            dict_to_json.setdefault(key, obj.to_dict())
+
         with open(self.__file_path, 'w') as jfile:
-            json.dump(dict_to_json, jfile)
+            json.dump(dict_to_json, jfile, indent=4)
 
     def reload(self):
         """deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, 'r') as rfile:
                 json_to_dict = json.load(rfile)
-            for key, object_dict in json_to_dict.items():
-                clas_name, object_id = key.split(".", 1)
-                cls = getattr(models, clas_name)
-                #cls = globals()[clas_name]
-                self.__objects[key] = cls(**object_dict)
 
-        except FileNotFoundError:
+            for ob_dict in json_to_dict.values():
+                class_name, obj_id = ob_dict['__class__'].split(".", 1)
+                cls = globals()[class_name]
+                key = f"{class_name}.{obj_id}"
+                FileStorage.__objects[key] = cls(**ob_dict)
+                """key = f"{ob_dict['__class__']}.{ob_dict['id']}"
+                FileStorage.__objects.setdefault(key, eval(ob_dict['__class__'])(**ob_dict))"""
+
+        except FileNotFoundError as err:
             pass
