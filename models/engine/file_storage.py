@@ -33,6 +33,7 @@ class FileStorage():
         try:
             with open(self.__file_path, 'r') as rfile:
                 json_to_dict = json.load(rfile)
+
             for key, object_dict in json_to_dict.items():
                 clas_name, object_id = key.split(".", 1)
                 cls = getattr(models, clas_name)
