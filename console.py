@@ -29,17 +29,14 @@ class HBNBCommand(cmd.Cmd):
             if not argss:
                 print("** class name missing **")
             if len(argss) > 0:
-                print(len(argss))
-                print(argss)
                 args = argss.split()
-                print(args)
             if len(args) != 1:
-                print("Fail")
+                print("** class doesn't exist **")
             elif len(args) == 1 and args[0] != 'BaseModel':
                 print("** class doesn't exist **")
             else:
-                inst = BaseModel
-                inst.save(self)
+                inst = BaseModel()
+                inst.save()
                 print(inst.id)
 
 
