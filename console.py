@@ -117,26 +117,28 @@ class HBNBCommand(cmd.Cmd):
              not on the class name. Ex: $ all BaseModel or $ all
             """
             if not argss:
-                print("not on the class name")
-                return
+                object_store = models.storage.all()
+                item_str = []
+                for value in object_store.values():
+                    val_str = f"\"{value}\""
+                    item_str.append(val_str)
+                result = ", ".join(item_str)
+                print(f"[{result}]")
+
             else:
                 args = argss.split()
-                if len(args) > 1:
-                    #########
+                if len(args) == 1 and args[0] not in self.cls_list:
+                    print("** class doesn't exist **")
                     return
                 else:
-                    if len(args) == 1 and args[0] not in self.cls_list:
-                        print("** class doesn't exist **")
-                        return
-                    else:
-                        object_store = models.storage.all()
-                        item_str = []
-                        for value in object_store.values():
-                            val_str = f"\"{value}\""
-                            item_str.append(val_str)
+                    object_store = models.storage.all()
+                    item_str = []
+                    for value in object_store.values():
+                        val_str = f"\"{value}\""
+                        item_str.append(val_str)
 
-                        result = ", ".join(item_str)
-                        print(f"[{result}]")
+                    result = ", ".join(item_str)
+                    print(f"[{result}]")
 
         def do_update(self, argss):
             """
@@ -176,10 +178,12 @@ class HBNBCommand(cmd.Cmd):
                                     args[3] = args[3][1:-1]
                                 if args[3].isdigit():
                                     args[3] = int(args[3])
-                                if isfloat(args[3]):
-                                    args[3] = float(args[3])
+                                else: 
+                                    if isfloat(args[3]):
+                                        args[3] = float(args[3])
                                 setattr(obj, args[2], args[3])
-                                obj.save()
+                                #obj.save()
+                                models.storage.save()
                     else:
                         print("** no instance found **")
                         return
