@@ -7,6 +7,13 @@ import cmd
 from models.base_model import BaseModel
 import models
 
+def isfloat(args):
+    try:
+        float(args)
+        return True
+    except ValueError:
+        return False
+
 class HBNBCommand(cmd.Cmd):
         prompt = '(hbnb) '
 
@@ -136,6 +143,10 @@ class HBNBCommand(cmd.Cmd):
             Updates an instance based on the class name and id by adding or
             updating attribute (save the change into the JSON file).
             Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
+            args[1] = BaseModel
+            args[2] = id i.e. 1234-1234-1234
+            args[3] = attribute name i.e. email
+            args[4] = attribute value i.e. "aibnb@mail.com"
             """
             if not argss:
                 print("** class name missing **")
@@ -145,23 +156,30 @@ class HBNBCommand(cmd.Cmd):
                 if args[0] not in self.cls_list:
                     print("** class doesn't exist **")
                     return
-                elif args[0] in self.cls_list and args[1] is None:
+                elif args[0] in self.cls_list and len(args) < 2:
                     print("** instance id missing **")
                     return
                 else:
                     object_store = models.storage.all()
                     key = args[0]+"."+args[1]
                     if key in object_store.keys():
-                        store = object_store[key]
-                        if args[2] is None:
+                        obj = object_store[key]
+                        if len(args) < 3:
                             print("** attribute name missing **")
                             return
-                        elif args[3] is None:
+                        elif len(args) < 4:
                             print("** value missing **")
                             return
                         else:
-                            store[args[2]] = args[3]
-                            models.storage.save          
+                            if obj:
+                                if args[3][0] == "\"" or args[3][0] == "\'":
+                                    args[3] = args[3][1:-1]
+                                if args[3].isdigit():
+                                    args[3] = int(args[3])
+                                if isfloat(args[3]):
+                                    args[3] = float(args[3])
+                                setattr(obj, args[2], args[3])
+                                obj.save()
                     else:
                         print("** no instance found **")
                         return
