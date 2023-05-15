@@ -8,6 +8,11 @@ import cmd
 from models.base_model import BaseModel
 import models
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 def isfloat(args):
@@ -21,7 +26,10 @@ def isfloat(args):
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
-    cls_list = ["BaseModel", "User"]
+    cls_list = [
+            "BaseModel", "User", "Place", "State",
+            "City", "Amenity", "Review"
+            ]
 
     def do_EOF(self, line):
         """to exit the program\n"""
