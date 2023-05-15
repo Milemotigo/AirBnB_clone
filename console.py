@@ -7,6 +7,7 @@
 import cmd
 from models.base_model import BaseModel
 import models
+from models.user import User
 
 
 def isfloat(args):
@@ -20,7 +21,7 @@ def isfloat(args):
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
-    cls_list = ["BaseModel"]
+    cls_list = ["BaseModel", "User"]
 
     def do_EOF(self, line):
         """to exit the program\n"""
@@ -51,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             else:
-                inst = BaseModel()
+                inst = eval(args[0])()
                 inst.save()
                 print(inst.id)
 
@@ -136,10 +137,11 @@ class HBNBCommand(cmd.Cmd):
             else:
                 object_store = models.storage.all()
                 item_str = []
-                for value in object_store.values():
-                    val_str = f"\"{value}\""
-                    item_str.append(val_str)
-
+                for key in object_store:
+                    if isinstance(object_store[key], eval(args[0])):
+                        value = object_store[key]
+                        val_str = f"\"{value}\""
+                        item_str.append(val_str)
                 result = ", ".join(item_str)
                 print(f"[{result}]")
 
