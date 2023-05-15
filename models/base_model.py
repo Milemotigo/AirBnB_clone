@@ -39,10 +39,8 @@ class BaseModel():
         of __dict__ of the instance"""
         dictt = {}
         for key, val in self.__dict__.items():
-            if key not in ["created_at", "updated_at"]:
-                dictt[key] = val
+            dictt[key] = val
         dictt["__class__"] = self.__class__.__name__
         dictt["created_at"] = self.updated_at.isoformat()
-        # dictt["id"] = self.id
         dictt["updated_at"] = self.created_at.isoformat()
         return dictt
