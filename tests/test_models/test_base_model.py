@@ -7,12 +7,12 @@ from models.user import User
 
 class TestBaseModel(unittest.TestCase):
     """   """
-    test = BaseModel(self)
-    def test_basemodel(self):
+    test = BaseModel()
+    def test_BaseModel(self):
         """  """
         self.assertTrue(BaseModel())
 
-    def test_user(self):
+    def test_User(self):
         """  """
         self.assertTrue(BaseModel)
         self.assertTrue(isinstance(self.User, BaseModel))
