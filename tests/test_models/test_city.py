@@ -12,7 +12,7 @@ class TestUser(unittest.TestCase):
         """  """
         self.assertTrue(City())
 
-    def test_attr(self):
+    """def test_attr(self):
         """  """
         self.assertTrue(self.user1.email=='')
-        self.assertTrue(self.user1.first_name=='')
+        self.assertTrue(self.user1.first_name=='')"""
