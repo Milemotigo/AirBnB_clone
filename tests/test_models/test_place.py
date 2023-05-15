@@ -2,15 +2,15 @@
 """  """
 
 import unittest
-from models.user import User
+from models.place import Place
 
 
 class TestUser(unittest.TestCase):
     """  """
-    user1 = User()
+    user1 = Place()
     def test_user(self):
         """  """
-        self.assertTrue(User())
+        self.assertTrue(Place())
 
     def test_attr(self):
         """  """

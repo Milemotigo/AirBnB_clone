@@ -2,15 +2,15 @@
 """  """
 
 import unittest
-from models.user import User
+from models.amenity import Amenity
 
 
 class TestUser(unittest.TestCase):
     """  """
-    user1 = User()
+    user1 = Amenity()
     def test_user(self):
         """  """
-        self.assertTrue(User())
+        self.assertTrue(Amenity())
 
     def test_attr(self):
         """  """

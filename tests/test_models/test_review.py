@@ -2,15 +2,15 @@
 """  """
 
 import unittest
-from models.user import User
+from models.review import Review
 
 
 class TestUser(unittest.TestCase):
     """  """
-    user1 = User()
+    user1 = Review()
     def test_user(self):
         """  """
-        self.assertTrue(User())
+        self.assertTrue(Review())
 
     def test_attr(self):
         """  """
