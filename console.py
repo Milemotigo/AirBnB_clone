@@ -30,6 +30,12 @@ class HBNBCommand(cmd.Cmd):
             "BaseModel", "User", "Place", "State",
             "City", "Amenity", "Review"
             ]
+    """cmmd_mapping = {
+                "User": User.all, "Place": Place.all,
+                "State": State.all, "Amenity": Amenity.all,
+                "BaseModel": BaseModel.all, "City": City.all,
+                "Review": Review.all
+            }"""
 
     def do_EOF(self, line):
         """to exit the program\n"""
@@ -139,19 +145,23 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             args = argss.split()
-            if len(args) == 1 and args[0] not in self.cls_list:
-                print("** class doesn't exist **")
-                return
+            if args:
+                if len(args) == 1 and args[0] not in self.cls_list:
+
+                    print("** class doesn't exist **")
+                    return
+                else:
+                    object_store = models.storage.all()
+                    item_str = []
+                    for key in object_store:
+                        if isinstance(object_store[key], eval(args[0])):
+                            value = object_store[key]
+                            val_str = f"\"{value}\""
+                            item_str.append(val_str)
+                    result = ", ".join(item_str)
+                    print(f"[{result}]")
             else:
-                object_store = models.storage.all()
-                item_str = []
-                for key in object_store:
-                    if isinstance(object_store[key], eval(args[0])):
-                        value = object_store[key]
-                        val_str = f"\"{value}\""
-                        item_str.append(val_str)
-                result = ", ".join(item_str)
-                print(f"[{result}]")
+                pass
 
     def do_update(self, argss):
         """
