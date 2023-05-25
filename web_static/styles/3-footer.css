@@ -4,6 +4,7 @@ footer{
   width: 100%;
   bottom: 0;
   border-top: 1px solid #CCCCCC;
+  padding: 0;
   position: absolute;
   display: grid;
   place-items: center;
