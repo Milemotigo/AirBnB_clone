@@ -4,23 +4,29 @@
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; 
+    align-content: center;
   }
-  button{
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid;
-  }
-  button{
-    font-size: 18px;
-    background-color:  #FF5A5F;
-    color: #FFFFFF;
-    height: 48px;
-    width: 20%;
-    border: 0;
-    border-radius: 4px;
-    margin-top: 11px;
-    margin-left: 75%;
-  }
-  .search-button:hover {
-    opacity: background-color: rgba(255, 90, 95, .9);
-  }
+  
+button:hover {
+  opacity: 0.9;
+}
+
+button{
+  font-size: 18px;
+  background-color:  #FF5A5F;
+  color: #FFFFFF;
+  height: 48px;
+  width: 20%;
+  border: 0;
+  padding: 0%;
+  border-radius: 4px;
+  margin-top: 11px;
+  margin-left: auto;
+}
+button {
+  position: relative; /* or absolute */
+  right: 30px;
+}
