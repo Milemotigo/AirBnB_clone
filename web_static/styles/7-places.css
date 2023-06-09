@@ -1,0 +1,12 @@
+.body{
+    background-color: red;
+    height: 20px;
+    width: 10px;
+}
+.places{
+    text-align: top;
+    /*background-color: red;*/
+}
+.places .article{
+    background-color: green;
+}

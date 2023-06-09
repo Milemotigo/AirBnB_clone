@@ -9,3 +9,7 @@
   justify-items: center;
   align-items: center;
 }
+body{
+  padding: 0;
+  margin: 0;
+}

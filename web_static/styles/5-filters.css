@@ -1,28 +1,33 @@
-.filters{
-  text-align: 30%;
-}
-.locations, 
+.locations ,
 .amenities{
-      height: 100%;
-      width: 25%;
-      color: black;
-      margin-left: 30px; /* Move the text 20 pixels to the right */
-  }
-  .locations{
-    border-right: 1px solid #DDDDDD;
-  }
-  .amenities{
-    margin-right: auto;
-  }
-  .locations h4{
-    font-weight: 600;
-    margin-bottom: 11px;
-    position: relative; /* or absolute */
-    bottom: 11px;
-  }
-  .amenities h4{
-    font-weight: 600;
-    margin-bottom: 11px;
-    position: relative; /* or absolute */
-    bottom: 11px;
-  }
+  width: 25%;
+  height: 100%;
+  color: black;
+ 
+}
+.locations{
+  border-right: 1px solid #DDDDDD;
+  display: grid;
+  place-content: center;
+}
+
+
+.amenities{
+  margin-right: auto;
+  display: grid;
+  place-content: center;
+}
+.locations h3,
+.amenities h3{
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
+.locations h4,
+.amenities h4{
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
