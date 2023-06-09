@@ -1,12 +1,39 @@
-.body{
-    background-color: red;
-    height: 20px;
-    width: 10px;
+.places h1 {
+    font-size: 30px;
+    position: relative;
+    display: flex;
+    top: 0px;
+    bottom: 0px;
+    margin: 15px;
 }
 .places{
-    text-align: top;
-    /*background-color: red;*/
+   /* background-color: gray;*/
+    display: flex;
+    top: 0px;
+    bottom: 0px;
+    margin: 15px;
+    margin-left : 32%;
+
+   
 }
-.places .article{
-    background-color: green;
+article h2{
+    display: flex;
+    justify-content: center;
+    border-left: 20px;
+    margin-left: 30px;
+    border: 1px solid #FF5A5F;
+    font-size: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    float: left;
+    margin: 20px;
+    padding: 20px;
+    width: 350px;
 }
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 120px;
+    font-size: 30px;
+  }
